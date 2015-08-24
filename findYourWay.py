@@ -35,7 +35,6 @@ def findExitWay(moveX, moveY, junction):
         if len(ways) > 1:
             for way in ways:
                 junction.append(way)
-            print junction
             (moveX, moveY) = junction.pop()
         elif len(ways) == 1:
             (moveX, moveY) = ways[0]
