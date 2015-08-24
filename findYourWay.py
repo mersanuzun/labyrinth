@@ -10,15 +10,15 @@ maze = [
     [0,0,0,1,0,0,0,0,1,0,0,1,1,1,0],
     [0,0,0,1,0,0,0,0,1,0,0,0,0,1,0],
     [0,0,0,1,0,0,0,1,1,1,1,0,1,1,0],
-    [0,0,0,1,0,0,0,0,0,1,0,1,0,1,0],
-    [0,0,0,1,0,0,1,1,1,1,1,1,0,0,0],
-    [0,0,0,1,0,0,0,0,0,1,0,1,1,1,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,2,0]
+    [0,0,0,1,0,0,0,0,0,1,0,1,0,1,1],
+    [0,1,1,1,0,0,1,1,1,1,1,1,0,0,0],
+    [2,1,0,1,0,0,0,0,0,1,0,1,1,1,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ]
 
 def findWays(moveX, moveY):
     ways = []
-    if 0 <= moveX < len(maze) and 0 <= moveY < len(maze):
+    if 0 <= moveX + 1 < len(maze) and 0 <= moveY + 1< len(maze):
         if maze[moveX+1][moveY] in [1,2]: ways.append((moveX+1, moveY))
         if maze[moveX-1][moveY] in [1,2]: ways.append((moveX-1, moveY))
         if maze[moveX][moveY+1] in [1,2]: ways.append((moveX, moveY+1))
@@ -26,6 +26,7 @@ def findWays(moveX, moveY):
     return ways
 
 def findExitWay(moveX, moveY, junction):
+    
     if maze[moveX][moveY] == 2:
         return moveX, moveY
     else:
@@ -34,6 +35,7 @@ def findExitWay(moveX, moveY, junction):
         if len(ways) > 1:
             for way in ways:
                 junction.append(way)
+            print junction
             (moveX, moveY) = junction.pop()
         elif len(ways) == 1:
             (moveX, moveY) = ways[0]
